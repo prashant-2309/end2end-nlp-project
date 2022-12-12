@@ -73,7 +73,7 @@ def main():
     elif choice =="Monitor":
         st.subheader("Monitor App")
 
-        with st.beta_expander("Page Metrics"):
+        with st.expander("Page Metrics"):
             page_visited_details = pd.DataFrame(view_all_page_visited_details(), columns=['Pagename', 'Time_of_Visit'])
             st.dataframe(page_visited_details)
 
@@ -85,7 +85,7 @@ def main():
             p = px.pie(pg_count, values='Counts', names='Pagename')
             st.plotly_chart(p, use_container_width=True)
 
-        with st.beta_expander('Emotion Classifier Metrics'):
+        with st.expander('Emotion Classifier Metrics'):
             df_emotions = pd.DataFrame(view_all_prediction_details(),
                                        columns=['Rawtext', 'Prediction', 'Probability', 'Time_of_Visit'])
             st.dataframe(df_emotions)
