@@ -23,7 +23,7 @@ def get_prediction_proba(docx):
     results = pipe_lr.predict_proba([docx])
     return results
 
-emotions_emoji_dict = {"anger":"😠","disgust":"🙄", "fear":"😨😱", "happy":"🤗", "joy":"🤧", "neutral":"😐", "sadness":"😔", "shame":"😳", "surprise":"😮"}
+emotions_emoji_dict = {"anger":"😠","disgust":"🙄", "fear":"😨😱", "joy":"🤧", "neutral":"😐", "sadness":"😔", "shame":"😳", "surprise":"😮"}
 
 
 
