@@ -19,8 +19,8 @@ from datetime import datetime
 import joblib
 pipe_lr = joblib.load(open("models/emotion_classifier_pipe_lr_11_december_2022.pkl","rb"))
 
-tfidf = pickle.load(open('D:\ML\end2end-nlp-project\App\models\\vectorizer.pkl', 'rb'))
-model = pickle.load(open('D:\ML\end2end-nlp-project\App\models\\model.pkl', 'rb'))
+tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
 
 # Track Utils
 from track_utils import create_page_visited_table,add_page_visited_details,view_all_page_visited_details,add_prediction_details,view_all_prediction_details,create_emotionclf_table
