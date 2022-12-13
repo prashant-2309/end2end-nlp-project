@@ -2,6 +2,13 @@
 import streamlit as st
 import altair as alt
 import plotly.express as px
+import pickle
+import string
+from nltk.corpus import stopwords
+import nltk
+from nltk.stem.porter import PorterStemmer
+nltk.download('punkt')
+nltk.download('stopwords')
 
 # EDA Pkgs
 import pandas as pd
@@ -11,6 +18,9 @@ from datetime import datetime
 # Utils
 import joblib
 pipe_lr = joblib.load(open("models/emotion_classifier_pipe_lr_11_december_2022.pkl","rb"))
+
+tfidf = pickle.load(open('D:\ML\end2end-nlp-project\App\models\\vectorizer.pkl', 'rb'))
+model = pickle.load(open('D:\ML\end2end-nlp-project\App\models\\model.pkl', 'rb'))
 
 # Track Utils
 from track_utils import create_page_visited_table,add_page_visited_details,view_all_page_visited_details,add_prediction_details,view_all_prediction_details,create_emotionclf_table
@@ -28,14 +38,37 @@ def get_prediction_proba(docx):
 
 emotions_emoji_dict = {"anger":"😠","disgust":"🙄", "fear":"😨😱", "joy":"🤧", "neutral":"😐", "sadness":"😔", "shame":"😳", "surprise":"😮"}
 
+ps = PorterStemmer()
+def transform_text(text):
+    text = text.lower()
+    text = nltk.word_tokenize(text)
 
+    y = []
+    for i in text:
+        if i.isalnum():
+            y.append(i)
+
+    text = y[:]
+    y.clear()
+
+    for i in text:
+        if i not in stopwords.words('english') and i not in string.punctuation:
+            y.append(i)
+
+    text = y[:]
+    y.clear()
+
+    for i in text:
+        y.append(ps.stem(i))
+
+    return " ".join(y)
 
 def main():
-    st.title("Emotion Classifier App")
-    menu = ["Home", "Monitor", "About"]
+    st.title("Text Classifier App")
+    menu = ["Emotion Dection", "Email/SMS Spam Detection", "About"]
     choice = st.sidebar.selectbox("Menu",menu)
 
-    if choice =="Home":
+    if choice =="Emotion Dection":
         st.subheader("Home-Emotion In Text")
 
         with st.form(key='emotion_clf_form'):
@@ -70,30 +103,32 @@ def main():
                 fig = alt.Chart(proba_df_clean).mark_bar().encode(x='emotions', y='probability', color='emotions')
                 st.altair_chart(fig, use_container_width=True)
 
-    elif choice =="Monitor":
-        st.subheader("Monitor App")
+    elif choice =="Email/SMS Spam Detection":
+        st.subheader("Email/SMS Spam Detection App")
 
-        with st.expander("Page Metrics"):
-            page_visited_details = pd.DataFrame(view_all_page_visited_details(), columns=['Pagename', 'Time_of_Visit'])
-            st.dataframe(page_visited_details)
 
-            pg_count = page_visited_details['Pagename'].value_counts().rename_axis('Pagename').reset_index(
-                name='Counts')
-            c = alt.Chart(pg_count).mark_bar().encode(x='Pagename', y='Counts', color='Pagename')
-            st.altair_chart(c, use_container_width=True)
 
-            p = px.pie(pg_count, values='Counts', names='Pagename')
-            st.plotly_chart(p, use_container_width=True)
+        st.title("Email/SMS Spam Classifier")
 
-        with st.expander('Emotion Classifier Metrics'):
-            df_emotions = pd.DataFrame(view_all_prediction_details(),
-                                       columns=['Rawtext', 'Prediction', 'Probability', 'Time_of_Visit'])
-            st.dataframe(df_emotions)
+        input_sms = st.text_area("Enter the message")
 
-            prediction_count = df_emotions['Prediction'].value_counts().rename_axis('Prediction').reset_index(
-                name='Counts')
-            pc = alt.Chart(prediction_count).mark_bar().encode(x='Prediction', y='Counts', color='Prediction')
-            st.altair_chart(pc, use_container_width=True)
+        if st.button('Predict'):
+
+            # 1. preprocess
+            transformed_sms = transform_text(input_sms)
+            # 2. vectorize
+            vector_input = tfidf.transform([transformed_sms])
+            # 3. predict
+            result = model.predict(vector_input)[0]
+            # 4. Display
+            if result == 1:
+                st.header("Spam")
+            else:
+                st.header("Not Spam")
+
+
+
+
 
     else:
         st.subheader("About")
