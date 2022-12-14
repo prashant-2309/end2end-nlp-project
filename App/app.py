@@ -64,7 +64,7 @@ def transform_text(text):
 
 def main():
     st.title("Text Classifier App")
-    menu = ["Emotion Dection", "Email/SMS Spam Detection", "About"]
+    menu = ["Email/SMS Spam Detection", "Emotion Dection", "About"]
     choice = st.sidebar.selectbox("Menu",menu)
 
     if choice =="Emotion Dection":
