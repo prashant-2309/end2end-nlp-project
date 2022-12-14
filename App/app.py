@@ -104,8 +104,8 @@ def main():
 
     elif choice =="Email/SMS Spam Detection":
         st.subheader("Email/SMS Spam Detection App")
-        tfidf = pickle.load(open('/app/end2end-nlp-project/Models/vectorizer.pkl', 'rb'))
-        model = pickle.load(open('/app/end2end-nlp-project/Models/model.pkl', 'rb'))
+        tfidf = pickle.load(open('/app/end2end-nlp-project/App/models/vectorizer.pkl', 'rb'))
+        model = pickle.load(open('/app/end2end-nlp-project/App/models/model.pkl', 'rb'))
 
 
 
