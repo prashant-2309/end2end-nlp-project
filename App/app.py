@@ -68,7 +68,7 @@ def main():
     choice = st.sidebar.selectbox("Menu",menu)
 
     if choice =="Emotion Dection":
-        st.subheader("Home-Emotion In Text")
+        st.subheader("Emotion In Text")
 
         with st.form(key='emotion_clf_form'):
             raw_text = st.text_area("Type Here")
@@ -103,13 +103,13 @@ def main():
                 st.altair_chart(fig, use_container_width=True)
 
     elif choice =="Email/SMS Spam Detection":
-        st.subheader("Email/SMS Spam Detection App")
+        
         tfidf = pickle.load(open('/app/end2end-nlp-project/App/models/vectorizer.pkl', 'rb'))
         model = pickle.load(open('/app/end2end-nlp-project/App/models/model.pkl', 'rb'))
 
 
 
-        st.title("Email/SMS Spam Classifier")
+        st.subheader("Email/SMS Spam Classifier")
 
         input_sms = st.text_area("Enter the message")
 
