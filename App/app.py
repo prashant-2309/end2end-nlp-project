@@ -17,7 +17,7 @@ from datetime import datetime
 
 # Utils
 import joblib
-pipe_lr = joblib.load(open("models/emotion_classifier_pipe_lr_11_december_2022.pkl","rb"))
+pipe_lr = joblib.load(open("D:\ML\end2end-nlp-project\App\models\\emotion.pkl","rb"))
 
 
 
@@ -35,7 +35,7 @@ def get_prediction_proba(docx):
     results = pipe_lr.predict_proba([docx])
     return results
 
-emotions_emoji_dict = {"anger":"😠","disgust":"🙄", "fear":"😨😱", "joy":"🤧", "neutral":"😐", "sadness":"😔", "shame":"😳", "surprise":"😮"}
+emotions_emoji_dict = {"anger":"😠", "fear":"😨😱", "joy":"🤧","love":"❤️", "sadness":"😔", "surprise":"😮"}
 
 ps = PorterStemmer()
 def transform_text(text):
@@ -64,11 +64,11 @@ def transform_text(text):
 
 def main():
     st.title("Text Classifier App")
-    menu = ["Email/SMS Spam Detection", "Emotion Dection", "About"]
+    menu = ["Emotion Dection", "Email/SMS Spam Detection", "About"]
     choice = st.sidebar.selectbox("Menu",menu)
 
     if choice =="Emotion Dection":
-        st.subheader("Emotion In Text")
+        st.subheader("Home-Emotion In Text")
 
         with st.form(key='emotion_clf_form'):
             raw_text = st.text_area("Type Here")
@@ -103,13 +103,13 @@ def main():
                 st.altair_chart(fig, use_container_width=True)
 
     elif choice =="Email/SMS Spam Detection":
-        
+        st.subheader("Email/SMS Spam Detection App")
         tfidf = pickle.load(open('/app/end2end-nlp-project/App/models/vectorizer.pkl', 'rb'))
         model = pickle.load(open('/app/end2end-nlp-project/App/models/model.pkl', 'rb'))
 
 
 
-        st.subheader("Email/SMS Spam Classifier")
+        st.title("Email/SMS Spam Classifier")
 
         input_sms = st.text_area("Enter the message")
 
