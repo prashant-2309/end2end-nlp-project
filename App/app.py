@@ -68,6 +68,7 @@ def main():
     choice = st.sidebar.selectbox("Menu",menu)
 
     if choice =="Emotion Dection":
+        pipe_lr = joblib.load(open("/app/end2end-nlp-project/App/models/emotion.pkl","rb"))
         st.subheader("Home-Emotion In Text")
 
         with st.form(key='emotion_clf_form'):
