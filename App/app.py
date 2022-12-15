@@ -17,7 +17,7 @@ from datetime import datetime
 
 # Utils
 import joblib
-pipe_lr = joblib.load(open("D:\ML\end2end-nlp-project\App\models\\emotion.pkl","rb"))
+
 
 
 
@@ -28,10 +28,12 @@ from track_utils import create_page_visited_table,add_page_visited_details,view_
 
 #Functions below
 def predict_emotions(docx):
+    pipe_lr = joblib.load(open("/app/end2end-nlp-project/App/models/emotion.pkl","rb"))
     results = pipe_lr.predict([docx])
     return results[0]
 
 def get_prediction_proba(docx):
+    pipe_lr = joblib.load(open("/app/end2end-nlp-project/App/models/emotion.pkl","rb"))
     results = pipe_lr.predict_proba([docx])
     return results
 
