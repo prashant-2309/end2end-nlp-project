@@ -190,7 +190,7 @@ def main():
     else:
         
         st.subheader("Made by Prashant Singh")
-        image = Image.open('D:\ML\end2end-nlp-project\App\\damian.jpg')
+        image = Image.open('/app/end2end-nlp-project/App/damian.jpg')
         st.image(image)
 
 if __name__ =='__main__':
