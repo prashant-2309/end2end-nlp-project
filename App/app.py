@@ -4,6 +4,7 @@ import altair as alt
 import plotly.express as px
 import pickle
 import string
+from PIL import Image
 from nltk.corpus import stopwords
 import nltk
 import requests
@@ -187,8 +188,10 @@ def main():
 
 # -----------------------------------------------------------------------------------------------------------------------------------
     else:
-        st.subheader("About")
+        
         st.subheader("Made by Prashant Singh")
+        image = Image.open('D:\ML\end2end-nlp-project\App\\damian.jpg')
+        st.image(image)
 
 if __name__ =='__main__':
     main()
