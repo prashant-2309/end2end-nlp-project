@@ -25,6 +25,7 @@ from track_utils import create_page_visited_table,add_page_visited_details,view_
 
 #Functions below
 
+st.set_page_config(page_title="My Page Title")
 
 def main():
     st.title("Text Classifier App")
