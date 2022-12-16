@@ -28,7 +28,7 @@ from track_utils import create_page_visited_table,add_page_visited_details,view_
 
 def main():
     st.title("Text Classifier App")
-    menu = ["Emotion Dection", "Email/SMS Spam Detection","Movies Recommendation","About"]
+    menu = ["Movies Recommendation", "Emotion Dection", "Email/SMS Spam Detection","About"]
     choice = st.sidebar.selectbox("Menu",menu)
 #-----------------------------------------------------------------------------------------------------------------------------------
     if choice =="Emotion Dection":
