@@ -1,0 +1,1 @@
+web: sh setup.sh &&  python -m streamlit run D:\ML\end2end-nlp-project\App\app.py
