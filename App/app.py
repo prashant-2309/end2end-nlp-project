@@ -43,7 +43,7 @@ def main():
             results = pipe_lr.predict_proba([docx])
             return results
 
-        emotions_emoji_dict = {"anger": "😠", "fear": "😨😱", "joy": "🤧", "love": "❤️", "sadness": "😔", "surprise": "😮"}
+        emotions_emoji_dict = {"anger": "😠", "fear": "😨😱", "joy": "😃", "love": "❤️", "sadness": "😔", "surprise": "😮"}
 
         pipe_lr = joblib.load(open("/app/end2end-nlp-project/App/models/emotion.pkl","rb"))
         st.subheader("Emotion In Text")
@@ -153,7 +153,7 @@ def main():
             return recommended_movie_names, recommended_movie_posters
 
 
-        movies = pickle.load(open("/app/end2end-nlp-project/App/models/movie_list.pkl", "rb"))
+        movies = pd.read_pickle(open("/app/end2end-nlp-project/App/models/movie_list.pkl", "rb"))
         similarity = pickle.load(open("/app/end2end-nlp-project/App/models/similarity.pkl", "rb"))
 
         movie_list = movies['title'].values
