@@ -182,7 +182,7 @@ def main():
                 st.text(recommended_movie_names[4])
                 st.image(recommended_movie_posters[4])
 
-        st.write("Due to the available dataset was till 2018, all the recommendation will be till 2018🤧")
+        st.write("Due to the available dataset contains data before year 2018, all the recommendation will be till the year 2018")
 
 
 
@@ -191,8 +191,8 @@ def main():
     else:
         
         st.subheader("Made by Prashant Singh")
-        image = Image.open('/app/end2end-nlp-project/App/damian.jpg')
-        st.image(image)
+        # image = Image.open('/app/end2end-nlp-project/App/damian.jpg')
+        # st.image(image)
 
 if __name__ =='__main__':
     main()
