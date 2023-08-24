@@ -85,8 +85,8 @@ def main():
 # -----------------------------------------------------------------------------------------------------------------------------------
     elif choice =="Email/SMS Spam Detection":
         st.subheader("Email/SMS Spam ")
-        tfidf = pickle.load(open('/app/end2end-nlp-project/App/models/vectorizer.pkl', 'rb'))
-        model = pickle.load(open('/app/end2end-nlp-project/App/models/model.pkl', 'rb'))
+        tfidf = pickle.load(open('\app\end2end-nlp-project\App\models\vectorizer.pkl', 'rb'))
+        model = pickle.load(open('\\app\\end2end-nlp-project\\App\\models\\model.pkl', 'rb'))
         ps = PorterStemmer()
 
         def transform_text(text):
