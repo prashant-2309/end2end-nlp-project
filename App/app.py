@@ -35,18 +35,18 @@ def main():
     if choice =="Emotion Dection":
         def predict_emotions(docx):
             f1 = open("/app/end2end-nlp-project/App/models/emotion.pkl", "rb")
-            pipe_lr = joblib.load(open("/App/models/emotion.pkl", "rb"))
+            pipe_lr = joblib.load(open("https://github.com/prashant-2309/end2end-nlp-project/blob/main/App/models/emotion.pkl", "rb"))
             results = pipe_lr.predict([docx])
             return results[0]
 
         def get_prediction_proba(docx):
-            pipe_lr = joblib.load(open("/App/models/emotion.pkl", "rb"))
+            pipe_lr = joblib.load(open("https://github.com/prashant-2309/end2end-nlp-project/blob/main/App/models/emotion.pkl", "rb"))
             results = pipe_lr.predict_proba([docx])
             return results
 
         emotions_emoji_dict = {"anger": "😠", "fear": "😨😱", "joy": "😃", "love": "❤️", "sadness": "😔", "surprise": "😮"}
 
-        pipe_lr = joblib.load(open("/App/models/emotion.pkl", "rb"))
+        pipe_lr = joblib.load(open("https://github.com/prashant-2309/end2end-nlp-project/blob/main/App/models/emotion.pkl", "rb"))
         st.subheader("Emotion In Text")
 
         with st.form(key='emotion_clf_form'):
