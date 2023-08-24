@@ -40,13 +40,13 @@ def main():
             return results[0]
 
         def get_prediction_proba(docx):
-            pipe_lr = joblib.load(f1)
+            pipe_lr = joblib.load(open("/App/models/emotion.pkl", "rb"))
             results = pipe_lr.predict_proba([docx])
             return results
 
         emotions_emoji_dict = {"anger": "😠", "fear": "😨😱", "joy": "😃", "love": "❤️", "sadness": "😔", "surprise": "😮"}
 
-        pipe_lr = joblib.load(f1)
+        pipe_lr = joblib.load(open("/App/models/emotion.pkl", "rb"))
         st.subheader("Emotion In Text")
 
         with st.form(key='emotion_clf_form'):
