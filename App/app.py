@@ -35,7 +35,7 @@ def main():
     if choice =="Emotion Dection":
         def predict_emotions(docx):
             f1 = open("/app/end2end-nlp-project/App/models/emotion.pkl", "rb")
-            pipe_lr = joblib.load(f1)
+            pipe_lr = joblib.load(open("/App/models/emotion.pkl", "rb"))
             results = pipe_lr.predict([docx])
             return results[0]
 
